@@ -17,6 +17,25 @@ script: npx create-react-app
 version: compat-7
 ```
 
+There are two ways to add Tailwind CSS to Create React App:
+1. Eject Create React App so you can add the PostCSS plugins to the Webpack configuration
+2. Use CRACO to override the PostCSS configuration
+
+### Eject Create React App
+
+Once ejected, look in the `webpack.config.js` file for the `postcss-loader`. 
+
+```diff-json
+  {
+    // ...
+    plugins: () => [
++     require('tailwindcss'),
++     require('autoprefixer'),
+      ...
+    },
+  }
+```
+
 ### Install and configure CRACO
 
 Since Create React App doesn't let you override the PostCSS configuration natively, we also need to install [CRACO](https://github.com/gsoft-inc/craco) to be able to configure Tailwind:
